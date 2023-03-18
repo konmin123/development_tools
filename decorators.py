@@ -22,6 +22,30 @@ def print_hi():
 print_hi()
 
 
+#  В декоратор можно передать аргумент.
+
+def pre_decorator(milliseconds):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            t = time.time() - start
+            if milliseconds:
+                print(f'прошло {t * 1000} миллисекунд')
+            else:
+                print(f'прошло {t} секунд')
+            return result
+        return wrapper
+    return decorator
+
+
+@pre_decorator(True)
+def sleep_time(t: int):
+    time.sleep(t)
+
+
+sleep_time(5)
+
 # def average_function_speed_decorator(func):
 #     """Декоратор печатающий среднее время выполнения функции"""
 #     def wrapper(*args, **kwargs):
