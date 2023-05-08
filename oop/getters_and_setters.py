@@ -7,7 +7,7 @@ class SomeClass:
         print('Создаю экземпляр класса')
         self.__some_private_attribute: int = 0
 
-    @property
+    @property  # Название метода должно совпадать с названием аттрибута
     def some_private_attribute(self):
         print('Геттер вернул значение.')
         return self.__some_private_attribute
